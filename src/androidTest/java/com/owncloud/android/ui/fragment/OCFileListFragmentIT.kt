@@ -397,4 +397,16 @@ class OCFileListFragmentIT : AbstractOnServerIT() {
         ocFile.fileLength = 100
         assertTrue(sut.checkIfEnoughSpace(100L, ocFile))
     }
+
+    @Test
+    @SuppressWarnings("MagicNumber")
+    fun testEnoughSpaceWithNoLocalFolder() {
+        val sut = OCFileListFragment()
+        val ocFile = OCFile("/test/")
+
+        ocFile.mimeType = "DIR"
+
+        ocFile.fileLength = 100
+        assertTrue(sut.checkIfEnoughSpace(200L, ocFile))
+    }
 }
